@@ -1,8 +1,10 @@
 .react-resizable-handle {
   display: block;
+  position: relative;
   background-color: #37414b;
   background-repeat: no-repeat;
   background-position: 50%;
+  z-index: 10;
 }
 
 .resize-horizontal {
@@ -15,6 +17,16 @@
   width: 100%;
   cursor: row-resize;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+}
+
+.react-resizable-handle-s::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: inherit;
 }
 
 .react-resizable-handle-e {
