@@ -14,17 +14,16 @@ const html = `
       <body>
         <div id="root"></div>
         <script>
-        const handleError = (err) =>{
-          const root = document.querySelector('#root');
+          const handleError = (err) => {
+            const root = document.querySelector('#root');
             root.innerHTML = '<div style="color: red;"><h4>Runtime Error</h4>' + err + '</div>';
             console.error(err);
-        }
+          };
 
           window.addEventListener('error', (event) => {
             event.preventDefault();
             handleError(event.error);
-          })
-
+          });
 
           window.addEventListener('message', (event) => {
             try {
@@ -43,16 +42,10 @@ const Preview: React.FC<PreviewProps> = ({ code, err }) => {
 
   useEffect(() => {
     iframe.current.srcdoc = html;
-    // Delay postMessage until iframe finishes reloading srcdoc content
-    const timer = setTimeout(() => {
-      iframe.current?.contentWindow.postMessage(code, '*');
+    setTimeout(() => {
+      iframe.current.contentWindow.postMessage(code, '*');
     }, 50);
-
-    return () => {
-      clearTimeout(timer);
-    };
   }, [code]);
-
 
   return (
     <div className="preview-wrapper">
@@ -68,3 +61,4 @@ const Preview: React.FC<PreviewProps> = ({ code, err }) => {
 };
 
 export default Preview;
+
