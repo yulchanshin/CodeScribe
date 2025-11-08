@@ -1,0 +1,7 @@
+# deps & caches
+node_modules/
+**/.cache/
+.cache/
+*.log
+dist/
+build/
